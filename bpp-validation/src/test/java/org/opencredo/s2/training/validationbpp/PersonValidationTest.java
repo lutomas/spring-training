@@ -6,10 +6,15 @@ import static org.junit.Assert.fail;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+/**
+ * 
+ * @author tomas.lukosius@opencredo.com
+ *
+ */
 public class PersonValidationTest {
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -18,7 +23,7 @@ public class PersonValidationTest {
 		try {
 			new ClassPathXmlApplicationContext("test1-context.xml", this.getClass());
 			fail("Bean validation must fail");
-		} catch (BeansException e) {
+		} catch (BeanCreationException e) {
 			logger.warn("Expected validation error", e);
 		}
 	}
